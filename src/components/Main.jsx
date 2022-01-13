@@ -221,12 +221,12 @@ function Main(props) {
                     >Put your name here (if you feel like it):<input
                             type="text"
                             name="username"
-                            value="" /></label
+                        /></label
                     ><label
                     >Leave us your email pretty please??<input
                             type="email"
                             name="email"
-                            value="" /></label
+                        /></label
                     ><input className="form__submit" type="submit" value="Submit Survey!" />
                 </form>
 
