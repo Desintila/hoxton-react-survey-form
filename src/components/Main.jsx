@@ -1,11 +1,28 @@
 import { useState } from "react";
+import AnswersList from "./AnswersList";
 
-function Main() {
+function Main(props) {
     const [open, setOpen] = useState(false); //Ignore this state
-
+    const [answersList, setAnswersList] = useState([])
 
     function handleSubmit(event) {
         event.preventDefault()
+
+        const data = {
+            review: event.target.review.value,
+            email: event.target.email.value,
+            username: event.target.username.value,
+            consistency: event.target.consistency.value,
+            colour: event.target.colour.value,
+            logo: event.target.logo.value,
+            bestFeatures: [],
+            worstFeatures: [],
+            timeSpent: []
+        }
+
+        const update = [...answersList]
+        update.push(data)
+        setAnswersList(update)
         event.target.reset()
     }
 
@@ -13,9 +30,9 @@ function Main() {
         <main className="main">
             <section className={`main__list ${open ? "open" : ""}`}>
                 <h2>Answers list</h2>
-                {/* answers should go here */}
+                <AnswersList answersList={answersList} />
             </section>
-            <section className="main__form">{
+            <section className="main__form">
                 <form className="form" onSubmit={handleSubmit}>
                     <h2>Tell us what you think about your rubber duck!</h2>
                     <div className="form__group">
@@ -23,7 +40,13 @@ function Main() {
                         <ul>
                             <li>
                                 <label
-                                ><input name="bestFeatures" type="checkbox" value="colour" />It's
+                                ><input name="bestFeatures" type="checkbox" value="colour" /* onChange={(event) => {
+
+                                    const newData = { ...answersList, bestFeatures: event.target.value }
+
+                                    props.setAnswersList(newData)
+                                }
+                                } */ />It's
                                     yellow!</label
                                 >
                             </li>
@@ -109,26 +132,26 @@ function Main() {
                         <h3>How do you rate your rubber duck colour?</h3>
                         <ul>
                             <li>
-                                <input id="consistency1" type="radio" name="colour" value="1" /><label
-                                    htmlFor="consistency1"
+                                <input id="colour1" type="radio" name="colour" value="1" /><label
+                                    htmlFor="colour1"
                                 >1</label
                                 >
                             </li>
                             <li>
-                                <input id="consistency2" type="radio" name="colour" value="2" /><label
-                                    htmlFor="consistency2"
+                                <input id="colour2" type="radio" name="colour" value="2" /><label
+                                    htmlFor="colour2"
                                 >2</label
                                 >
                             </li>
                             <li>
-                                <input id="consistency3" type="radio" name="colour" value="3" /><label
-                                    htmlFor="consistency3"
+                                <input id="colour3" type="radio" name="colour" value="3" /><label
+                                    htmlFor="colour3"
                                 >3</label
                                 >
                             </li>
                             <li>
-                                <input id="consistency4" type="radio" name="colour" value="4" /><label
-                                    htmlFor="consistency4"
+                                <input id="colour4" type="radio" name="colour" value="4" /><label
+                                    htmlFor="colour4"
                                 >4</label
                                 >
                             </li>
@@ -139,26 +162,26 @@ function Main() {
                         <h3>How do you rate your rubber duck logo?</h3>
                         <ul>
                             <li>
-                                <input id="consistency1" type="radio" name="logo" value="1" /><label
-                                    htmlFor="consistency1"
+                                <input id="logo1" type="radio" name="logo" value="1" /><label
+                                    htmlFor="logo1"
                                 >1</label
                                 >
                             </li>
                             <li>
-                                <input id="consistency2" type="radio" name="logo" value="2" /><label
-                                    htmlFor="consistency2"
+                                <input id="logo2" type="radio" name="logo" value="2" /><label
+                                    htmlFor="logo2"
                                 >2</label
                                 >
                             </li>
                             <li>
-                                <input id="consistency3" type="radio" name="logo" value="3" /><label
-                                    htmlFor="consistency3"
+                                <input id="logo3" type="radio" name="logo" value="3" /><label
+                                    htmlFor="logo3"
                                 >3</label
                                 >
                             </li>
                             <li>
-                                <input id="consistency4" type="radio" name="logo" value="4" /><label
-                                    htmlFor="consistency4"
+                                <input id="logo4" type="radio" name="logo" value="4" /><label
+                                    htmlFor="logo4"
                                 >4</label
                                 >
                             </li>
@@ -206,7 +229,7 @@ function Main() {
                             value="" /></label
                     ><input className="form__submit" type="submit" value="Submit Survey!" />
                 </form>
-            }
+
             </section>
         </main>
     );

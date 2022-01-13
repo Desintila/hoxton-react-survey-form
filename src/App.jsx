@@ -1,13 +1,12 @@
 
+import { useState } from 'react/cjs/react.development';
 import './App.css'
 
 import Header from "./components/Header";
 import Main from "./components/Main";
 
-/*
-This is what your initial state could look like:
 
-  const initialForm = {
+const initialForm = {
   review: "",
   email: "",
   username: "",
@@ -19,14 +18,16 @@ This is what your initial state could look like:
   timeSpent: []
 };
 
-*/
+
 
 
 export default function App() {
+  const [formData, setFormData] = useState(initialForm)
+
   return (
     <>
       <Header />
-      <Main />
+      <Main formData={formData} setFormData={setFormData} initialFor={initialForm} />
     </>
   );
 }
